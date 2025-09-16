@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 
 export default function AdminDashboard() {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
