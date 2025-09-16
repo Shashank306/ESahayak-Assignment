@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
+import type { User } from '@supabase/supabase-js';   
+
 
 export default function AdminDashboard() {
   // const [user, setUser] = useState(null);
