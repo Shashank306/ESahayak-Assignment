@@ -30,10 +30,7 @@ export async function GET(request: NextRequest) {
         console.log('Token found, trying to verify...');
         
         try {
-          if (!supabaseAdmin) {
-            throw new Error('Supabase admin client not available');
-          }
-          const { data: { user: tokenUser }, error } = await supabaseAdmin.auth.getUser(token);
+          const { data: { user: tokenUser }, error } = await supabaseAdmin?.auth.getUser(token);
           if (tokenUser && !error) {
             console.log('Token user found:', tokenUser.email);
             // Get or create user in our database

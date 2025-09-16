@@ -27,10 +27,7 @@ export async function PUT(
         console.log('Token found, trying to verify...');
         
         try {
-          if (!supabaseAdmin) {
-            throw new Error('Supabase admin client not available');
-          }
-          const { data: { user: tokenUser }, error } = await supabaseAdmin.auth.getUser(token);
+          const { data: { user: tokenUser }, error } = await supabaseAdmin?.auth.getUser(token);
           console.log('Token verification result:', tokenUser ? `User found: ${tokenUser.email}` : 'No user');
           console.log('Token verification error:', error);
           
@@ -168,22 +165,13 @@ export async function PUT(
     });
 
     // Update buyer
-    const updateData: Record<string, unknown> = {
-      ...validatedData,
-      tags,
-      updatedAt: new Date(),
-    };
-    
-    // Remove undefined values to avoid type conflicts
-    Object.keys(updateData).forEach(key => {
-      if (updateData[key] === undefined) {
-        delete updateData[key];
-      }
-    });
-
     const [updatedBuyer] = await db
       .update(buyers)
-      .set(updateData)
+      .set({
+        ...validatedData,
+        tags,
+        updatedAt: new Date(),
+      })
       .where(eq(buyers.id, id))
       .returning();
 
@@ -237,10 +225,7 @@ export async function DELETE(
         console.log('Token found, trying to verify...');
         
         try {
-          if (!supabaseAdmin) {
-            throw new Error('Supabase admin client not available');
-          }
-          const { data: { user: tokenUser }, error } = await supabaseAdmin.auth.getUser(token);
+          const { data: { user: tokenUser }, error } = await supabaseAdmin?.auth.getUser(token);
           console.log('Token verification result:', tokenUser ? `User found: ${tokenUser.email}` : 'No user');
           console.log('Token verification error:', error);
           

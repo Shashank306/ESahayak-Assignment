@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 
 export default function AdminDashboard() {
-  const [user, setUser] = useState<{ id: string; email?: string } | null>(null);
-  const [userRole, setUserRole] = useState<string | null>(null);
+  const [user, setUser] = useState(null);
+  const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -19,10 +19,7 @@ export async function POST(request: NextRequest) {
         const token = authHeader.substring(7);
         
         try {
-          if (!supabaseAdmin) {
-            throw new Error('Supabase admin client not available');
-          }
-          const { data: { user: tokenUser }, error } = await supabaseAdmin.auth.getUser(token);
+          const { data: { user: tokenUser }, error } = await supabaseAdmin?.auth.getUser(token);
           if (tokenUser && !error) {
             // Get or create user in our database
             const [dbUser] = await db
