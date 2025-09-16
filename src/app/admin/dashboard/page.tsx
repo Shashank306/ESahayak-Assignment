@@ -5,11 +5,13 @@ import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import type { User } from '@supabase/supabase-js';   
 
+type Role = 'admin' | 'user' | 'not_found' | null;   
 
 export default function AdminDashboard() {
   // const [user, setUser] = useState(null);
   const [user, setUser] = useState<User | null>(null);
-  const [userRole, setUserRole] = useState(null);
+  // const [userRole, setUserRole] = useState(null);
+  const [userRole, setUserRole] = useState<Role>(null);   
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
