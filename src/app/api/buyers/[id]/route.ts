@@ -27,7 +27,7 @@ export async function PUT(
         console.log('Token found, trying to verify...');
         
         try {
-          const { data: { user: tokenUser }, error } = await supabaseAdmin?.auth.getUser(token);
+          const { data: { user: tokenUser }, error } = await supabaseAdmin.auth.getUser(token);
           console.log('Token verification result:', tokenUser ? `User found: ${tokenUser.email}` : 'No user');
           console.log('Token verification error:', error);
           
